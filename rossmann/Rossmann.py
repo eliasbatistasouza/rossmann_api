@@ -27,8 +27,7 @@ class Rossmann(object):
         # Rename columns
         cols_old = list(dataframe)
         # Function from rename
-        snakecase = lambda x: inflection.underscore(x)
-        cols_new = list(map(snakecase, cols_old))
+        cols_new = list(map(lambda x: inflection.underscore(x), cols_old))
         # Renaming columns
         dataframe.columns = cols_new
 
