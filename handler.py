@@ -21,7 +21,7 @@ async def rossmann_predict(request: Request):
     test_json = json.loads(request_body)
 
     if test_json:
-        test_raw = pd.read_json(StringIO(test_json))
+        test_raw = pd.read_json(test_json)
 
         # Instantiate Rossmann class
         pipeline = Rossmann()
