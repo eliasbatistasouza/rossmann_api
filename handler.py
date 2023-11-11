@@ -1,7 +1,6 @@
 import json
 import os
 import pickle
-from io import StringIO
 
 import pandas as pd
 from fastapi import FastAPI, Request
@@ -17,7 +16,8 @@ app = FastAPI()
 
 @app.post("/rossmann/predict")
 async def rossmann_predict(request: Request):
-    test_json = await request.json()
+    request_body = await request.body()
+    test_json = json.loads(request_body)
 
     if test_json:
         test_raw = pd.read_json(test_json)
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     import uvicorn
 
     port = os.environ.get("PORT", 8000)
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
