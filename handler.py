@@ -17,8 +17,7 @@ app = FastAPI()
 
 @app.post("/rossmann/predict")
 async def rossmann_predict(request: Request):
-    request_body = await request.body()
-    test_json = json.loads(request_body)
+    test_json = await request.json()
 
     if test_json:
         test_raw = pd.read_json(test_json)
